@@ -18,7 +18,7 @@ Goonbag is the future.
 
 ## Copyright
 
-Copyright (c) 2011 [Gregory Tangey](http://ignite.digitalignition.net/). See LICENSE for details.
+Copyright (c) 2012 [Gregory Tangey](http://ignite.digitalignition.net/). See LICENSE for details.
 
 
 

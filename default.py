@@ -1,6 +1,6 @@
 '''
     goonbag.com XBMC Plugin
-    Copyright (C) 2011 Ruxton
+    Copyright (C) 2011 Greg Tangey
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

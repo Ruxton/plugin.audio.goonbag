@@ -28,11 +28,13 @@ def log(description):
   if DEBUG:
     xbmc.log("[ADD-ON] '%s v%s': %s" % (__plugin__, __version__, description), xbmc.LOGNOTICE)
 
-__addon__ = xbmcaddon.Addon()
-__plugin__ = __addon__.getAddonInfo('name')
-__version__ = __addon__.getAddonInfo('version')
-__icon__ = __addon__.getAddonInfo('icon')
-__language__ = __addon__.getLocalizedString
+__addon__     = xbmcaddon.Addon()
+__plugin__    = __addon__.getAddonInfo('name')
+__version__   = __addon__.getAddonInfo('version')
+__icon__      = __addon__.getAddonInfo('icon')
+__language__  = __addon__.getLocalizedString
+
+addonPath     = __addon__.getAddonInfo('path')
 
 i18n = __language__
 
@@ -47,19 +49,19 @@ STREAMS = [
       "name": "live",
       "title": i18n(30003),
       "url": "http://gbr.goonhost.net:8000/",
-      "thumb": "http://live.goonbag.com/images/01chan.jpg"
+      "thumb": "live.png"
     },
     {
       "name": "aa247",
       "title": i18n(30004),
       "url": "http://gbr.goonhost.net:8002/",
-      "thumb": "http://live.goonbag.com/images/01chan.jpg"
+      "thumb": "aa247.png"
     },
     {
       "name": "classics",
       "title": i18n(30005),
       "url": "http://gbr.goonhost.net:8004/",
-      "thumb": "http://live.goonbag.com/images/01chan.jpg"
+      "thumb": "classics.png"
     }
 ]
 
@@ -93,6 +95,7 @@ def stream_info(url):
 
 def add_stream(name, title, thumb, comment, stream_url):
     streamInfo = stream_info(stream_url)
+    icon = xbmc.translatePath('%s/resources/%s' % (addonPath,thumb))
     if streamInfo.has_key('icy-pub'):
       log('add_stream() stream '+name+' is online')
       title = title + " ("+i18n(30001)+")"
@@ -100,10 +103,10 @@ def add_stream(name, title, thumb, comment, stream_url):
       log('add_stream() stream '+name+' is offline')
       title = title + " ("+i18n(30002)+")"
 
-    listitem = xbmcgui.ListItem(title, iconImage=thumb, thumbnailImage=thumb)
+    listitem = xbmcgui.ListItem(title, iconImage=icon, thumbnailImage=icon)
     infoLabels = {'title': title, 'artist': i18n(30000), 'comment': comment}
     listitem.setInfo('music', infoLabels)
-    url = pluginUrl + '?mode=play&stream_url=' + stream_url + '&thumb=' + thumb + '&title=' + title + '&name=' + name
+    url = pluginUrl + '?mode=play&stream_url=' + stream_url + '&thumb=' + icon + '&title=' + title + '&name=' + name
     xbmcplugin.addDirectoryItem(pluginHandle, url, listitem, isFolder=False)
 
 

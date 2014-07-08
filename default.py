@@ -17,7 +17,6 @@
 '''
 
 import xbmc, xbmcplugin, xbmcgui, xbmcaddon
-from BeautifulSoup import BeautifulSoup
 import urllib, urllib2, cgi
 import re
 import random
